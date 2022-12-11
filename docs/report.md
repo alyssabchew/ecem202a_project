@@ -71,4 +71,18 @@ In order of execution in implementation:
 
 # 5. Discussion and Conclusions
 
+The results show that our simple smart home system relying on gestures rather than voice functions well enough to correctly perform all desired qualities of the most basic smart home system (turning devices on and off).  
+
+From the data collected, we were able to make some conclusions:
+
+We found that 
+
+## Future Steps
+
+The first logical future step would be to fully automate the system.  At this time, we are able to send an image of the AprilTag from the iPhone via email.  However, due to Google's security and privacy policies, we were unable to directly download these attachments and funnel them through the MATLAB AprilTag recognition.  A future work would utilize OAuth 2.0 to link these pieces without the need for manual download.
+
+Another logical future step would be to increase the number of devices that the system is able to keep track of.  Rather than only using 2 smart home plugs, a future work would include more than 2 smart devices that are separated by conical spaces based on position and orientation of the user.  We currently only separate the general space into two sections, one for each plug.
+
+Next, we also see a future work utilizing an AR headset along with a wearable device for gesture recognition.  This would allow users to more seamlessly integrate this technology into their lives. 
+
 # 6. References
