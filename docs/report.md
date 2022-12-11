@@ -13,9 +13,6 @@ For our project, we aimed to create a smart home system as well as a system of s
 
 # 1. Introduction
 
-This section should cover the following items:
-
-* Motivation & Objective: What are you trying to do and why? (plain English without jargon)
 * State of the Art & Its Limitations: How is it done today, and what are the limits of current practice?
 * Novelty & Rationale: What is new in your approach and why do you think it will be successful?
 * Potential Impact: If the project is successful, what difference will it make, both technically and broadly?
@@ -23,6 +20,7 @@ This section should cover the following items:
 * Requirements for Success: What skills and resources are necessary to perform the project?
 * Metrics of Success: What are metrics by which you would check for success?
 
+## Motivation & Objective:
 Most current smart home systems are focused on voice recognition and voice commands.  Those who are deaf or hard of hearing (DHH) struggle to use such devices since they cannot interact with Alexa, Siri, or Google Home is quite the same way.  Therefore, we attempted to bridge this gap by creating a system that would afford DHH people the same ease and convenience with smart devices as people who can hear.  
 
 For our project, we used Apple's ARKit to create a system to track the user's position and orientation relative to different smart plugs alongside the RP2040 microcontroller to recognize gestures to turn those plugs on and off.
@@ -40,6 +38,8 @@ To perform the project, we required an iPhone, Apple's ARKit, a RP2040 microcont
 Finally, in order to assess our success in meeting our objectives, we first ensured that we were able to properly recognize the AprilTags from the iPhone and send over position and orientation data to a webhook. Next, we compiled this data with the position and orientation data from the RP2040.  Using this system, we were able to create rectangular direction "scopes" that represented a device being "aimed" at a specific smart plug.  Another metric of success we utilized was the gesture recognition accuracy.  Altogether, if the device was in that range and a gesture was performed, we would then expect to see the desired outcome.  Our final metric of success was how often this desired outcome would occur.  
 
 # 2. Related Work
+
+
 
 # 3. Technical Approach
 
