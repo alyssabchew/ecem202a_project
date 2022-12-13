@@ -303,7 +303,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, CBPeripheralDelegate,
 //            if MFMailComposeViewController.canSendMail() {
 //                let mail = MFMailComposeViewController()
 //
-//                mail.setToRecipients(["alyssachew@g.ucla.edu"])
+//                mail.setToRecipients([""])
 //                mail.setSubject("IMAGE attached")
 //                mail.setMessageBody("Here's screenshot!", isHTML: true)
 //                mail.addAttachmentData(screenshotData, mimeType: "image/jpeg", fileName: "bedroom_light.jpeg")
@@ -488,7 +488,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, CBPeripheralDelegate,
         if MFMailComposeViewController.canSendMail() {
 //            let imageName = referenceImage.name ?? ""
             let mail = MFMailComposeViewController()
-            mail.setToRecipients(["alyssachew@g.ucla.edu", "projectece202a@gmail.com", "projectece202a@outlook.com"])
+            mail.setToRecipients(["projectece202a@gmail.com", "projectece202a@outlook.com"])
             mail.setSubject("Image attached")
             mail.setMessageBody("Here's april tag! Distance from image (m): “\(distance)” Orientation: “\(orientation)” Location: “\(location)”", isHTML: true)
             mail.mailComposeDelegate = self
