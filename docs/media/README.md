@@ -4,6 +4,6 @@
 - AprilTag files that can be used in conjunction with ARKit
 
 
-### waypoint sample folders
+### waypointSampleScreenshots folder
 
 - contains sample snapshot images from ARKit of AprilTags used to mark waypoints
