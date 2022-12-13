@@ -46,7 +46,16 @@ Alyssa will be responsible for the ARKit and ESP 32 CAM testing with AprilTags. 
 
 ### 9.a. Papers
 
-List the key papers that you have identified relating to your project idea, and describe how they related to your project. Provide references (with full citation in the References section below).
+#### "AI for Accessibility: Virtual Assistant for Hearing Impaired." 
+
+In 2020, Ozarkar et. al. attempted to use pose estimation algorithms to recognize sounds and "translate" them into sign language words and sentences to improve communication for the DHH community.  They proposed an application that would capture different sounds in the daily life such as vehicles or sirens and convert those into alerts for DHH users.  Alternatively, they also proposed a way to convert sign language into text and speech for non-deaf people to understand.  Their solution found that quick gestures, multiple subjects in frame and noisy environments produced fluctuating results.  Taking from their work and previous research into the DHH community, we decided that an accessible smart home system for the DHH community would focus on gestures since those are most closely related to sign language. 
+
+#### Accessible Smart Home System for the Deaf and Hard-of- Hearing.
+
+We also looked at the work done by Bempong et. al. which determined that there are currently no perfect solutions.  It looked at applications that would require the user have access to their phone to adjust different settings.  Bempong et. al. also determined that IFTTT would be a workaround solution.  We decided to integrate this component into our project but automate the process so the user would not have to manually trigger the IFTTT action to turn the lights on and off.
+
+#### HoloHome: An Augmented Reality Framework to Manage the Smart Home. In: De Paolis, L., Bourdot, P. (eds) Augmented Reality, Virtual Reality, and Computer Graphics.
+The work of Mahroo et. al. attempted to utilize a hybrid/mixed reality framework to allow users to interact with smart home devices through augmented objects.  Both groups choose to align virtual objects over real objects so users can communicate with them.  To simplify this system, we chose to design a system that would not rely solely on augmenting reality.   
 
 ### 9.b. Datasets
 
@@ -67,10 +76,14 @@ We plan to use ARKit (with an iPhone) in place of an AR headset to constantly tr
 
 AprilTags: https://github.com/AprilRobotics/apriltag-imgs
 
-MATLAB (AprilTags): https://www.mathworks.com/help/vision/ref/readapriltag.html
-
 ARKit: https://developer.apple.com/documentation/arkit/
 
 ARKit 2D Image Detection: https://developer.apple.com/documentation/arkit/content_anchors/detecting_images_in_an_ar_experience
 
+Bempong, J., Stainslow, J., Behm, G. (2015). Accessible Smart Home System for the Deaf and Hard-of- Hearing. https://www.rit.edu/ntid/nyseta/sites/rit.edu.ntid.nyseta/files/docs/fullpapers_PDFs/StanislowJoeFullPaper.pdf. 
 
+Mahroo, A., Greci, L., Sacco, M. (2019). HoloHome: An Augmented Reality Framework to Manage the Smart Home. In: De Paolis, L., Bourdot, P. (eds) Augmented Reality, Virtual Reality, and Computer Graphics. AVR 2019. Lecture Notes in Computer Science(), vol 11614. Springer, Cham. https://doi.org/10.1007/978-3-030-25999-0_12
+
+MATLAB (AprilTags): https://www.mathworks.com/help/vision/ref/readapriltag.html
+
+Ozarkar, S., Chetwani, R., Devare, S., Haryani, S., & Giri, N. (2020). AI for Accessibility: Virtual Assistant for Hearing Impaired. 2020 11th International Conference on Computing, Communication and Networking Technologies (ICCCNT). doi:10.1109/icccnt49239.2020.9225392
