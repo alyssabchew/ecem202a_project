@@ -16,3 +16,4 @@ testfin tree.txt is a file that lists the specification for the decion tree
 testfin.ucf is the decision tree 
 idlegaus is a unused file with a gaussian noise added to make a tested tree more robust 
 files with _train in the name are the files that were produced by inspect+trim_data.ipynb in the software folder after being trimmed of extraineous data 
+We have several rtees that we tried out that are available upon request 
