@@ -28,7 +28,7 @@ Our approach is to combine wearable devices with existing smart home technology 
 While our final project is still in the early stages, it shows the potential for an even better system with more advanced technology.  A successful version of this project would allow for all users, whether a part of the DHH community or not, to control their smart home devices more easily, without interrupting their daily life.  Rather than having to stop a conversation or pause a television show to turn the lights off, a user could simply turn their head and perform a small gesture to dim the lights.  More generally, this kind of system could be expanded to allow users to customize their living spaces further: preheating the oven from the couch or turning on the sprinklers from bed, all without having to touch their phones. 
 
 ## Challenges:
-This project involved many challenging components.  A key challenge was implementing the gesture recognition within a small range of motion.  Since we wanted these gestures to be rather small so they could be done easily from wherever a person was located, we did not want to require the users to perform large gestures.  However, smaller gestures led to more errors since small bumps or unintended motions were sometimes read as the gesture.  Another challenge was streaming the position and orientation data from both the phone and the RP2040 to a webhook for real time processing.  Because we chose to sample this data at one frame per second, there is the potential for error due to gaps leading to undetected motion.
+This project involved many challenging components.  A key challenge was implementing the gesture recognition within a small range of motion.  Since we wanted these gestures to be rather small so they could be done easily from wherever a person was located, we did not want to require the users to perform large gestures.  However, smaller gestures led to more errors since small bumps or unintended motions were sometimes read as the gesture.  Another challenge was streaming the position and orientation data from both the phone and the RP2040 to a webhook for real time processing.  Because we chose to sample this data at one frame per second, there is the potential for error due to gaps leading to undetected motion. 
 
 ## Requirements for Success:
 To perform the project, we required an iPhone, Apple's ARKit, a RP2040 microcontroller, a set of smart plugs, and several AprilTags.  Knowledge of Swift alongside ARKit and machine learning to create a gesture recognition system that is accurate with small gestures is also required.  Teams would also need to be able to coordinate position and orientation of both the phone and the microcontroller (in our case a RP2040) to keep track of whether a gesture was being performed and which device it was "aimed" at.
@@ -50,7 +50,7 @@ To create a more seamless experience for the user, we decided that in our system
 
 # 3. Technical Approach
 
-Our approach is to leverage Apple's ARKit, AprilTags and a machine learning based gesture recognition system to create a novel gesture based smart home system without the need for voice control.  For our technical approach, we aim to 
+Our approach is to leverage Apple's ARKit, AprilTags and a machine learning based gesture recognition system to create a novel gesture based smart home system without the need for voice control.  For our technical approach, we aim to leverage the RP2040's LSM6DSOX's ML layer to recognize geatures, ARkit's accurate SLAM position and oreitnation tracking to track position, and APRILtag's unique tracking capabilities to make this possible. 
 
 ## Hardware Implementation
 
@@ -64,7 +64,7 @@ In order of execution in implementation:
 * ARKit + AprilTag recognition:
   * to establish the position and orientation data of the user (aka the iPhone) 
 * Gesture recognition system:
-  * to recognize gestures conducted with the RP2040 in relation to the user 
+  * to recognize gestures conducted with the RP2040 utalizing the ML core of the accelerometer/gyroscope chip (LSM6DSOX) and STMICRO's GUI interface to generate and run a         decision tree 
 * Image Capture and Digital Processing:
   * utilize Swift to capture images and send those over via email
   * images are then utilized within MATLAB to capture absolute and relative positioning in comparison with the AprilTag (using the AprilTag package)
@@ -85,7 +85,7 @@ From these positions, we would then be able to utilize the iPhone's current loca
 
 ## Gesture Recognition Model and Training
 
-We utilized Arduino IDE and RP2040 to create a gesture recognition model.  We initially attempted to define 4 different states (idle, walking, on/off, and all on/all off).  Unfortunately, due to the sensitivity of the RP2040, we found that the on/off gesture was being triggered too frequently.  Because of that, we chose to narrow the number of gestures in the model.
+We utilized Arduino IDE and RP2040 to create a gesture recognition model using STMICROELECTRONIC's UNICO GUI to generate the decision tree..  We initially attempted to define 4 different states (idle, walking, on/off, and all on/all off).  Unfortunately, due to the sensitivity of the RP2040, we found that the on/off gesture was being triggered too frequently.  Because of that, we chose to narrow the number of gestures in the model to 3 with a more robust idle condition. The final product is generated using a idle states trained on a recorded data set of no action, slow walking, and some movement. We also tried injecting gaussian noise into the dataset which improved the decision tree's bounds but did not improve the overall performance upon test. At the end we settled on a window of 52 samples(half a second) and use the features mean and varaicne for all three axis of the accelerometer. The gyroscope proved difficult to work with when training the model. In the end it is able to recognize side to side movement , up and down flick movement, and idle state. The details for the tree is in "testfin tree.txt"
 
 
 # 4. Evaluation and Results
@@ -123,11 +123,11 @@ We found that due to the latency issue and the required proximity to trigger the
 
 The first logical future step would be to deal with the latency issue.  
 
-Secondly, the system should be fully automated.  At this time, we are able to send an image of the AprilTag from the iPhone via email.  However, due to Google's security and privacy policies, we were unable to directly download these attachments and funnel them through the MATLAB AprilTag recognition.  A future work would utilize OAuth 2.0 to link these pieces without the need for manual download.
+Secondly, the system should be fully automated.  At this time, we are able to send an image of the AprilTag from the iPhone via email.  However, due to Google's security and privacy policies, we were unable to directly download these attachments and funnel them through the MATLAB AprilTag recognition.  A future work would utilize OAuth 2.0 to link these pieces without the need for manual download. Once we have that in place we will be able to use the MTLAB engine to run files automatically through a python script. 
 
 Another logical future step would be to increase the number of devices that the system is able to keep track of.  Rather than only using 2 smart home plugs, a future work would include more than 2 smart devices that are separated by conical spaces based on position and orientation of the user.  We currently only separate the general space into two sections, one for each plug.
 
-Next, we also see a future work utilizing an AR headset along with a wearable device for gesture recognition.  This would allow users to more seamlessly integrate this technology into their lives. 
+Next, we also see a future work utilizing an AR headset along with a wearable device for gesture recognition.  This would allow users to more seamlessly integrate this technology into their lives. We have already seen that geature recongition can convey a variety of meanings and can allow users to voicelessly convey meaning to machine. For example a recent paper by Siyou Pei et al. of UCLA was able to interact with 24 hand based objects in AR/VR in the paper "Hand Interfaces: Using Hands to Imitate Objects in AR/VR for Expressive Interactions." adding directionality to the equation would allow a user to more specifically interact with similar or different devices. 
 
 # 6. References
 AprilTags: https://april.eecs.umich.edu/software/apriltag
@@ -162,4 +162,4 @@ Sanchez-Comas, A., Synnes, K., Hallberg, J. (2020). Hardware for Recognition of 
 
 Seo, D., Kim, H., Kim, J., Lee, J. (2016). Hybrid reality-based user experience and evaluation of a context-aware smart home. https://doi.org/10.1016/j.compind.2015.11.003.
 
-
+Pei, Siyou, et al. “Hand Interfaces: Using Hands to Imitate Objects in AR/VR for Expressive Interactions.” CHI Conference on Human Factors in Computing Systems, 2022, https://doi.org/10.1145/3491102.3501898. 
