@@ -1,0 +1,44 @@
+F1_MEAN_on_ACC_X <= -0.519831
+|   F5_VAR_on_ACC_Y <= 0.00442182: idle (41.0)
+|   F5_VAR_on_ACC_Y > 0.00442182
+|   |   F2_MEAN_on_ACC_Y <= -0.22982
+|   |   |   F1_MEAN_on_ACC_X <= -0.883789
+|   |   |   |   F1_MEAN_on_ACC_X <= -0.977539: side (1.0)
+|   |   |   |   F1_MEAN_on_ACC_X > -0.977539: idle (1.0)
+|   |   |   F1_MEAN_on_ACC_X > -0.883789: forward (3.0)
+|   |   F2_MEAN_on_ACC_Y > -0.22982: forward (151.0)
+F1_MEAN_on_ACC_X > -0.519831: side (101.0)
+
+Number of Leaves  : 	6
+Size of the tree : 	11
+
+
+class:
+ => idle, side, forward, 
+features:
+ => F1_MEAN_on_ACC_X, F2_MEAN_on_ACC_Y, F3_MEAN_on_ACC_Z, F4_VAR_on_ACC_X, F5_VAR_on_ACC_Y, F6_VAR_on_ACC_Z, F7_ENERGY_on_ACC_X, F8_ENERGY_on_ACC_Y, 
+
+
+Mean absolute error	0.977577
+Root mean squared error	0.977706
+ ======= Whole data training with Confidence Factor: 0.9 ========= 
+
+
+===== Confusion Matrix =====
+         	idle     	side     	forward  	<-- classified as
+idle     	42	0	0	
+side     	0	102	0	
+forward  	0	0	154	
+
+Total Number of Instances        : 298
+Correctly Classified Instances   : 298
+Incorrectly Classified Instances : 0
+Kappa Statistic: 0.404081
+Accuracy: 100%
+
+Report  :	precision	recall	support	
+idle     	1    	1	 42
+side     	1    	1	 102
+forward  	1    	1	 154
+
+avg/total	1    	1	 298
