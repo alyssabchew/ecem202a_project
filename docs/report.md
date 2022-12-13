@@ -90,7 +90,7 @@ We utilized Arduino IDE and RP2040 to create a gesture recognition model.  We in
 
 # 4. Evaluation and Results
 
-We set up the system as shown below.
+We set up the system with the iPhone modeling an "AR headset" and the Arduino modeling a "wearable device" in a system with two smart plugs places at two different points in the space.
 
 The iPhone remains connected to the laptop to allow the ARKit code to continuously run.  We left the RP2040 connected to a separate laptop to allow the Arduino code to run simultaneously.  The smart plugs were placed at different points in the space to allow the iPhone a margin of error in determining which direction the device was "pointed at."  
 
