@@ -1,0 +1,48 @@
+// Add your code here. All actions will run unless you explicitly skip them.
+// Quick tips!
+// Auto-complete is on. Start typing to see ingredient options.
+// Hover over any ingredient to see the variable type and an example.
+// TypeScript v2.92
+let time_pos = GoogleSheets.cellValue[0].Value
+let way_1 = GoogleSheets.cellValuesInRow[0].ColumnA
+let way_2 = GoogleSheets.cellValuesInRow[0].ColumnB
+let possplit = time_pos.split(",", 6)
+let way1split = way_1.split(",", 3)
+let way2split = way_2.split(",", 3)
+let way1x = parseFloat(way1split[0])
+let way1z = parseFloat(way1split[2])
+let way2x = parseFloat(way2split[0])
+let way2z = parseFloat(way2split[2])
+let pos_x = parseFloat(possplit[0])
+let pos_z = parseFloat(possplit[2])
+let pos_roll = parseFloat(possplit[5])
+let cos_rot = Math.cos(pos_roll*Math.PI)
+let sin_rot = Math.sin(pos_roll*Math.PI)
+let pos_x1 = -way1x + pos_x
+let pos_z1 = -way1z + pos_z 
+let pos_x2 = -way2x + pos_x
+let pos_z2 = -way2z + pos_z 
+let pos_x1star = pos_x1 * cos_rot - pos_z1*sin_rot
+let pos_x1neg =  pos_x2 * Math.cos(pos_roll*Math.PI) - pos_z2*Math.sin(pos_roll*Math.PI)
+let pos_z1star = pos_z1 * cos_rot + pos_x1*sin_rot
+let pos_x2star = pos_x2 * Math.cos(-pos_roll*Math.PI) - pos_z2*Math.sin(-pos_roll*Math.PI)
+let pos_x2neg =  pos_x2 * cos_rot - pos_z2*sin_rot 
+let pos_z2star = pos_z2 * cos_rot + pos_x2*sin_rot
+let bound1 = Math.abs(pos_z1)/4 + .5
+let bound2 =  Math.abs(pos_z2)/4 + .7
+
+pos_x2star = Math.min(Math.abs(pos_x2star), Math.abs(pos_x2neg))
+if (pos_x1star > -bound1 && pos_x1star < bound1){
+  Kasa.toggle2.skip();
+} 
+// else {
+//   Kasa.toggle1.skip();
+// }
+else if (pos_x2star > -bound2 && pos_x2star < bound2) {
+  Kasa.toggle1.skip();
+} else { 
+  Kasa.toggle1.skip();
+  Kasa.toggle2.skip();
+}
+
+
