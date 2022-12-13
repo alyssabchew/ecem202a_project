@@ -66,8 +66,11 @@ We plan to use ARKit (with an iPhone) in place of an AR headset to constantly tr
 ## 10. References
 
 AprilTags: https://github.com/AprilRobotics/apriltag-imgs
+
 MATLAB (AprilTags): https://www.mathworks.com/help/vision/ref/readapriltag.html
+
 ARKit: https://developer.apple.com/documentation/arkit/
+
 ARKit 2D Image Detection: https://developer.apple.com/documentation/arkit/content_anchors/detecting_images_in_an_ar_experience
 
 
