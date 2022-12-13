@@ -38,7 +38,15 @@ Finally, in order to assess our success in meeting our objectives, we first ensu
 
 # 2. Related Work
 
-In recent years, there have been multiple proposals for different smart home systems that would allow users control of their smart devices without voice control.  
+In recent years, there have been multiple proposals for different smart home systems that would allow users control of their smart devices without voice control.  Previous works dived into using AI for Accessibility but focused on removing the voice commands in favor of phone commands.  Newer works looking into AR for smart homes presented more aligned with our goals.  
+
+For example, in 2020, Ozarkar et. al. attempted to use pose estimation algorithms to recognize sounds and "translate" them into sign language words and sentences to improve communication for the DHH community.  They proposed an application that would capture different sounds in the daily life such as vehicles or sirens and convert those into alerts for DHH users.  Alternatively, they also proposed a way to convert sign language into text and speech for non-deaf people to understand.  Their solution found that quick gestures, multiple subjects in frame and noisy environments produced fluctuating results.  Taking from their work and previous research into the DHH community, we decided that an accessible smart home system for the DHH community would focus on gestures since those are most closely related to sign language. 
+
+We also looked at the work done by Bempong et. al. which determined that there are currently no perfect solutions.  It looked at applications that would require the user have access to their phone to adjust different settings.  Bempong et. al. also determined that IFTTT would be a workaround solution.  We decided to integrate this component into our project but automate the process so the user would not have to manually trigger the IFTTT action to turn the lights on and off.
+
+The work of Seo et. al. and Mahroo et. al. both attempted to utilize a hybrid/mixed reality framework to allow users to interact with smart home devices through augmented objects.  Both groups choose to align virtual objects over real objects so users can communicate with them.  To simplify this system, we chose to design a system that would not rely solely on augmenting reality.   
+
+To create a more seamless experience for the user, we decided that in our system, rather than a user's reality being altered, we would simply define gestures that a user could perform to interact with their smart home devices.  This would easily allow a user to relax without the virtual objects obscuring their view and would still provide them access to their smart home devices.
 
 # 3. Technical Approach
 
@@ -67,7 +75,7 @@ In order of execution in implementation:
 
 We utilized ARKit to recognize different AprilTags linked to different smart home plugs.  
 
-We initially attempted to use the ESP32 CAM devices to recognize different AprilTags instead, but found that the ESP32 CAMs had very limited resolution.  Because of the limited resolution, we found that the ESP32 CAM's range was too small to be practical for our use case.
+We initially attempted to use the ESP32 CAM devices to recognize different AprilTags instead, but found that the ESP32 CAMs had very limited resolution.  Because of the limited resolution, we found that there was not enough capacity on the ESP32 CAM to do both the image capturing and the apriltag recognition.
 
 We chose to focus our time instead on using the iPhone camera to recognize the AprilTags.  We were also able to use the iPhone to track the location and orientation of the user.  ARKit was able to accurately recognize the AprilTags most of the time (it would get confused occasionally with a few AprilTags).  When ARKit properly recognized an AprilTag, we would tap the screen to send an email with the iPhone's location, orientation and a photo of the AprilTag.
 
@@ -130,11 +138,24 @@ Apple ARKit 3D Coordinates / Motion Guide: https://support.apple.com/guide/motio
 
 Apple SceneKit Euler Angles: https://developer.apple.com/documentation/scenekit/scnnode/1407980-eulerangles
 
-ESP 32 CAM AprilTag: https://github.com/stnk20/esp32-Apriltag
+ESP32 CAM AprilTag: https://github.com/stnk20/esp32-Apriltag
+
+ESP32 CAM AprilTag UCLA Lemur Blog: https://uclalemur.com/blog/determining-the-ideal-resolution-for-apriltag-detection
 
 IFTTT Documentation: https://ifttt.com/docs
 
 IFTTT Webhooks FAQ: https://help.ifttt.com/hc/en-us/articles/115010230347
 
 MATLAB readAprilTag: https://www.mathworks.com/help/vision/ref/readapriltag.html
+
+Bempong, J., Stainslow, J., Behm, G. (2015). Accessible Smart Home System for the Deaf and Hard-of- Hearing. https://www.rit.edu/ntid/nyseta/sites/rit.edu.ntid.nyseta/files/docs/fullpapers_PDFs/StanislowJoeFullPaper.pdf. 
+
+Mahroo, A., Greci, L., Sacco, M. (2019). HoloHome: An Augmented Reality Framework to Manage the Smart Home. In: De Paolis, L., Bourdot, P. (eds) Augmented Reality, Virtual Reality, and Computer Graphics. AVR 2019. Lecture Notes in Computer Science(), vol 11614. Springer, Cham. https://doi.org/10.1007/978-3-030-25999-0_12
+
+Ozarkar, S., Chetwani, R., Devare, S., Haryani, S., & Giri, N. (2020). AI for Accessibility: Virtual Assistant for Hearing Impaired. 2020 11th International Conference on Computing, Communication and Networking Technologies (ICCCNT). doi:10.1109/icccnt49239.2020.9225392
+
+Sanchez-Comas, A., Synnes, K., Hallberg, J. (2020). Hardware for Recognition of Human Activities: A Review of Smart Home and AAL Related Technologies. Sensors 2020, 20(15), 4227. https://doi.org/10.3390/s20154227
+
+Seo, D., Kim, H., Kim, J., Lee, J. (2016). Hybrid reality-based user experience and evaluation of a context-aware smart home. https://doi.org/10.1016/j.compind.2015.11.003.
+
 
