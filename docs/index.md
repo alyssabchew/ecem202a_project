@@ -4,7 +4,7 @@ For our project, we aimed to create a smart home system as well as a system of s
 
 # Team
 
-* Moon Jung
+* Kevin "Moon" Jung
 * Alyssa Chew
 
 # Required Submissions
