@@ -63,11 +63,43 @@ In order of execution in implementation:
 * IFTTT / Webhooks in conjunction with Smart Home Plugs:
   * finally, use webhooks to aggregate the data from the previous steps and tell the smart home plugs when to turn on or off
 
-## Gesture Recognition Model Performance and Training
-
 ## Image Capturing and Digital Processing
 
+We utilized ARKit to recognize different AprilTags linked to different smart home plugs.  
+
+We initially attempted to use the ESP32 CAM devices to recognize different AprilTags instead, but found that the ESP32 CAMs had very limited resolution.  Because of the limited resolution, we found that the ESP32 CAM's range was too small to be practical for our use case.
+
+We chose to focus our time instead on using the iPhone camera to recognize the AprilTags.  We were also able to use the iPhone to track the location and orientation of the user.  ARKit was able to accurately recognize the AprilTags most of the time (it would get confused occasionally with a few AprilTags).  When ARKit properly recognized an AprilTag, we would tap the screen to send an email with the iPhone's location, orientation and a photo of the AprilTag.
+
+From there, we would pass the image and location coordinates into a MATLAB script designed to process the AprilTag and tell us the positioning of the AprilTag. We would use the positions of each AprilTag as waypoints for the system (fixed locations of the smart plugs / devices).  Once per second, we would send the iPhone's current location and orientation to a webhook.  From that webhook, we used IFTTT to compile that data into a Google Sheet.  
+
+From these positions, we would then be able to utilize the iPhone's current location and orientation to determine if the iPhone was "pointed at" one of the smart home devices / plugs.  If the iPhone was pointed at a plug, we would listen for a gesture using IFTTT.  
+
+## Gesture Recognition Model and Training
+
+We utilized Arduino IDE and RP2040 to create a gesture recognition model.  We initially attempted to define 4 different states (idle, walking, on/off, and all on/all off).  Unfortunately, due to the sensitivity of the RP2040, we found that the on/off gesture was being triggered too frequently.  Because of that, we chose to narrow the number of gestures in the model.
+
+
 # 4. Evaluation and Results
+
+We set up the system as shown below.
+
+The iPhone remains connected to the laptop to allow the ARKit code to continuously run.  We left the RP2040 connected to a separate laptop to allow the Arduino code to run simultaneously.  The smart plugs were placed at different points in the space to allow the iPhone a margin of error in determining which direction the device was "pointed at."  
+
+To test out our project, we decided to measure the success of each part of the system. 
+
+We first tested the iPhone's ability to identify different AprilTags.  Across 4 different tags, the iPhone had an accuracy rate of 87.5% (when conducting 10 tests of each tag).  
+
+These results are fairly promising.  At no point did the iPhone ever not recognize a tag had been captured.  The iPhone would occasionally mis-identify which tag was in its line of sight or identify a tag as two different tags.  The iPhone was especially likely to confuse tag 16h5_00001 as 16h5_00000.  This indicates that with a wider variety of tags, especially ones from different AprilTag families, we can expect a higher accuracy rate.  This is also promising since the iPhone's ability to recognize AprilTags is only important during the initial setup of the system.
+
+Next, we chose to test MATLAB's ability to recognize the iPhone's screenshots of the AprilTags.  When running 5 tests on 3 different AprilTags (15 screenshots total), we found that the MATLAB script was able to recognize 13 of those 15 screenshots.  Of the two that were not able to be recognized, one was determined to be too far away (the MATLAB script relies on the AprilTag being within a certain distance) and the other was confused with another AprilTag (again of the same family).  
+
+Then, we chose to test the ability of the iPhone's orientation and location to properly trigger the smart home plugs when they should be triggered.  We found that the bounds of the devices were rather sensitive and that if the iPhone was pointed just outside that range, it would not trigger the lights properly.  
+
+Our last test of an individual component was to test whether the RP2040 could properly turn the lights on and off without the use of the iPhone.  Upon recognized gestures, the device was able to properly turn the smart home plugs on and off.  However, there were occasions when gestures were not performed but the system was rather sensitive and still triggered the smart home plugs.
+
+Finally, we tested the entire system combined.  We found that the results warrant future work.  While our system does suffer from a rather tedious setup process (which we hope would be automated in future work), once the system is setup, it tends to perform fairly well.  The smart home plugs are triggered a bit more often than one would like due to the sensitivity of the gestures.  Additionally, one has to be a bit closer to the smart home plugs than we initially hoped due to the imprecision of the boundaries we places around each plug.  However, overall, the system is able to conveniently recognize gestures and allow the user to turn the lights on and off without voice commands or flipping the switch manually.
+
 
 # 5. Discussion and Conclusions
 
@@ -86,3 +118,23 @@ Another logical future step would be to increase the number of devices that the 
 Next, we also see a future work utilizing an AR headset along with a wearable device for gesture recognition.  This would allow users to more seamlessly integrate this technology into their lives. 
 
 # 6. References
+AprilTags: https://april.eecs.umich.edu/software/apriltag
+
+AprilTags 3 (pre-generated): https://github.com/AprilRobotics/apriltag
+
+Apple ARKit Documentation: https://developer.apple.com/documentation/arkit
+
+Apple ARKit 2D Image Detection: https://developer.apple.com/documentation/arkit/content_anchors/detecting_images_in_an_ar_experience
+
+Apple ARKit 3D Coordinates / Motion Guide: https://support.apple.com/guide/motion/intro-to-3d-coordinates-motn17c66fd6/mac 
+
+Apple SceneKit Euler Angles: https://developer.apple.com/documentation/scenekit/scnnode/1407980-eulerangles
+
+ESP 32 CAM AprilTag: https://github.com/stnk20/esp32-Apriltag
+
+IFTTT Documentation: https://ifttt.com/docs
+
+IFTTT Webhooks FAQ: https://help.ifttt.com/hc/en-us/articles/115010230347
+
+MATLAB readAprilTag: https://www.mathworks.com/help/vision/ref/readapriltag.html
+
