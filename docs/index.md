@@ -11,5 +11,5 @@ For our project, we aimed to create a smart home system as well as a system of s
 
 * [Proposal](proposal)
 * [Midterm Checkpoint Presentation Slides](https://docs.google.com/presentation/d/1CNIoVoqDiMYZu2qwL2CC9Wwj_iQOI7ATdiDZEP6GRtU/edit?usp=sharing)
-* [Final Presentation Slides](http://)
+* [Final Presentation Slides](https://docs.google.com/presentation/d/1-81vviZRYrxBL8g1AoBrIXS_gOWARnVI/edit?usp=sharing&ouid=111134344017704234284&rtpof=true&sd=true)
 * [Final Report](report)
