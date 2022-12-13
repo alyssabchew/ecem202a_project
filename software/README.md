@@ -1,4 +1,5 @@
-Add your project's code to this folder.
+ARKitImageDetection contains Swift code to recognize AprilTags, take snapshots of waypoints (+ send via email), and send position / orientation data once per second
+
 IFTTT_setup contains screenshots for the setup as well as the filter code user for the execution 
 
 Aprilupdate.m is the file that finds the position of apriltags 
